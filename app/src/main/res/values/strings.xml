@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">BoosterCluester</string>
+    <string name="dominaria">Dominaria</string>
+    <string name="ixalan">Ixalan</string>
+    <string name="amonkhet">Amonkhet</string>
+    <string name="masters25">Masters 25</string>
+    <string name="scars_of_mirrodin">Scars of Mirrodin</string>
 </resources>

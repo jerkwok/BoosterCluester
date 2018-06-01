@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener, CardAdapter.OnItemClickListener{
+        implements View.OnClickListener, CardAdapter.CardClickListener{
 
     private RecyclerView recyclerView;
     private CardAdapter adapter;
@@ -41,26 +41,10 @@ public class MainActivity extends AppCompatActivity
 
         mtgService = MtgService.retrofit.create(MtgService.class);
 
-        adapter = new CardAdapter(cardList, new CardAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                View rowView = recyclerView.getChildAt(position);
-                View answerView = rowView.findViewById(R.id.answer_text_view);
-
-                if (answerView.getVisibility() == View.GONE) {
-                    answerView.setVisibility(View.VISIBLE);
-                }else{
-                    answerView.setVisibility(View.GONE);
-                }
-            }
-        }
-
-        );
+        adapter = new CardAdapter(cardList, this);
         recyclerView.setAdapter(adapter);
 
         generateBooster("som");
-
-
     }
 
     private void generateBooster(String setId) {
@@ -90,15 +74,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        View rowView = recyclerView.getChildAt(position);
-        View answerView = rowView.findViewById(R.id.answer_text_view);
-
-        if (answerView.getVisibility() == View.GONE) {
-            answerView.setVisibility(View.VISIBLE);
+    public void onCardClicked(CardAdapter.ViewHolder cardViewHolder)
+    {
+        if (cardViewHolder.answerView.getVisibility() == View.GONE) {
+            cardViewHolder.answerView.setVisibility(View.VISIBLE);
         }else{
-            answerView.setVisibility(View.GONE);
+            cardViewHolder.answerView.setVisibility(View.GONE);
         }
     }
-
 }

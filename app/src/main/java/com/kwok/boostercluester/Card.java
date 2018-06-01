@@ -8,4 +8,6 @@ public class Card {
     String rarity;
     String text;
     String imageUrl;
+    String power;
+    String toughness;
 }
