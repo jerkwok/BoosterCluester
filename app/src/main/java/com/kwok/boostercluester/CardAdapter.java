@@ -63,4 +63,8 @@ class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
     }
+
+    public void setCardList(List<Card> cardList){
+        this.cardList = cardList;
+    }
 }

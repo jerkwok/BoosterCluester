@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, CardAdapter.OnItemClickListener{
 
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private CardAdapter adapter;
 
     MtgService mtgService;
     Button button;
@@ -41,6 +41,23 @@ public class MainActivity extends AppCompatActivity
 
         mtgService = MtgService.retrofit.create(MtgService.class);
 
+        adapter = new CardAdapter(cardList, new CardAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                View rowView = recyclerView.getChildAt(position);
+                View answerView = rowView.findViewById(R.id.answer_text_view);
+
+                if (answerView.getVisibility() == View.GONE) {
+                    answerView.setVisibility(View.VISIBLE);
+                }else{
+                    answerView.setVisibility(View.GONE);
+                }
+            }
+        }
+
+        );
+        recyclerView.setAdapter(adapter);
+
         generateBooster("som");
 
 
@@ -56,24 +73,8 @@ public class MainActivity extends AppCompatActivity
                 BoosterResponse bodyList = response.body();
 
                 cardList = bodyList.temp;
-                adapter = new CardAdapter(cardList, new CardAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        View rowView = recyclerView.getChildAt(position);
-                        View answerView = rowView.findViewById(R.id.answer_text_view);
-
-                        if (answerView.getVisibility() == View.GONE) {
-                            answerView.setVisibility(View.VISIBLE);
-                        }else{
-                            answerView.setVisibility(View.GONE);
-                        }
-                    }
-                }
-
-
-                );
-                recyclerView.setAdapter(adapter);
-
+                adapter.setCardList(cardList);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
