@@ -33,17 +33,18 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     // Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
 
 // JSON Parsing
-    compile 'com.google.code.gson:gson:2.6.1'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.google.code.gson:gson:2.6.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
 // recyclerview
     implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-    compile 'io.magicthegathering:javasdk:0.0.10'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'io.magicthegathering:javasdk:0.0.10'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
 }

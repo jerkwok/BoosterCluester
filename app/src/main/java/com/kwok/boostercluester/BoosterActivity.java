@@ -20,7 +20,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BoosterActivity extends AppCompatActivity
-        implements View.OnClickListener, CardAdapter.CardClickListener{
+        implements View.OnClickListener,
+        CardAdapter.ClickListener
+{
 
     private RecyclerView recyclerView;
     private CardAdapter adapter;
@@ -53,7 +55,7 @@ public class BoosterActivity extends AppCompatActivity
         if (setString.isEmpty()){
             generateBooster("som");
         }else{
-            generateBooster(setString);
+            generateBooster(setString.toUpperCase());
         }
     }
 
@@ -96,6 +98,17 @@ public class BoosterActivity extends AppCompatActivity
             cardViewHolder.answerView.setVisibility(View.VISIBLE);
         }else{
             cardViewHolder.answerView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onImageIconClicked(CardAdapter.ViewHolder cardViewHolder)
+    {
+        if (cardViewHolder.imageView.getVisibility() == View.GONE)
+        {
+            cardViewHolder.imageView.setVisibility(View.VISIBLE);
+        }else{
+            cardViewHolder.imageView.setVisibility(View.GONE);
         }
     }
 }
